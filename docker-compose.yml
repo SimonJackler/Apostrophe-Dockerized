@@ -1,0 +1,29 @@
+version: '3'
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    command: bash -c 'mongod --smallfiles'
+    networks:
+      - all
+  web:
+    image: node:boron
+    container_name: apostrophe
+    volumes:
+      - ./:/usr/src/app
+    working_dir: /usr/src/app
+    stdin_open: true
+    tty: true
+    command: bash -c 'npm install; if [ ! -f .initialized ]; then echo -e "admin\n" | node app.js apostrophe-users:add admin admin; touch .initialized; fi; npm start'
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    # links:
+      # - mongo
+    networks:
+      - all
+    environment:
+      MONGODB_URI: "mongodb://mongo:27017/"
+networks:
+  all:

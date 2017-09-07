@@ -1,0 +1,29 @@
+{
+  "name": "apostrophe-boilerplate",
+  "version": "2.0.0",
+  "description": "Minimal Apostrophe Boilerplate",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "P'unk Avenue",
+  "license": "MIT",
+  "dependencies": {
+    "apostrophe": "^2.0.0",
+    "nodemon": "^1.12.0"
+  },
+  "nodemonConfig": {
+    "verbose": true,
+    "restartable": "rs",
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "ext": "js html json",
+    "ignore": [".git", "node_modules/*"],
+    "watch": ["lib"]
+  }
+}
